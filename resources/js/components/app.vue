@@ -1,3 +1,3 @@
 <template>
-    first Component in laravel protfolio
+    <router-view/>
 </template>

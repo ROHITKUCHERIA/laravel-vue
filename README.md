@@ -67,71 +67,70 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## steps
 
-step 1 composer create-project laravel/laravel portfolia-website
-step 2 npm install vue-loader@next vue@next vue-router@next
-step 3 npm i @vitejs/plugin-vue --force --save-dev
+- step 1 composer create-project laravel/laravel portfolia-website
+- step 2 npm install vue-loader@next vue@next vue-router@next
+- step 3 npm i @vitejs/plugin-vue --force --save-dev
 
-step 4 after that we have to configure that plugin into vite.config.js file
+- step 4 after that we have to configure that plugin into vite.config.js file
 
-file : vite.config.js
+            file : vite.config.js
 
-import vuePlugin from '@vitejs/plugin-vue';
+            import vuePlugin from '@vitejs/plugin-vue';
+            export default defineConfig({
+                plugins: [
+                    laravel({
+                        input: ['resources/css/app.css', 'resources/js/app.js'],
+                        refresh: true,
+                    }),
+                    vue(),
+                ],
+            });
 
-export default defineConfig({
-    plugins: [
-        laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
-            refresh: true,
-        }),
-        vue(),
-    ],
-});
 
-
-Step 5 Now we have to configure our blade file to app.js file at to loading time
+- Step 5 Now we have to configure our blade file to app.js file at to loading time
 
 file : App.js
 
-import './bootstrap';
+    import './bootstrap';
+    
+    import { createApp } from 'vue';
+    
+    import app from './components/app.vue'
+    
+    createApp(app).mount("#app")
 
-import { createApp } from 'vue';
-
-import app from './components/app.vue'
-
-createApp(app).mount("#app")
-
-step 6 now we have to create components/app.vue file at that path
+- step 6 now we have to create components/app.vue file at that path
 
 file : app.vue
 
-<template>
-    first Component in laravel protfolio
-</template>
+    <template>
+        first Component in laravel protfolio
+    </template>
 
-step 7 now we have to mount this app.vue file to our laravel welcome.blade.php file
+- step 7 now we have to mount this app.vue file to our laravel welcome.blade.php file
 
 file : welcome.blade.php
 
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
-        @vite('resources/css/app.css')
-    </head>
-    <body>
-        <div id="app"></div>
-        @vite('resources/js/app.js')
-    </body>
-</html>
+    <!DOCTYPE html>
+    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+            <title>Laravel</title>
+    
+            <!-- Fonts -->
+            <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    
+            @vite('resources/css/app.css')
+        </head>
+        <body>
+            <div id="app"></div>
+            @vite('resources/js/app.js')
+        </body>
+    </html>
  
 
-step 8 now we can run command in terminal
+- step 8 now we can run command in terminal
 
 cmd :- npm run dev
